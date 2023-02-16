@@ -1,0 +1,136 @@
+// Базові стилі спойлерів
+// Сніппет (HTML): spoller
+
+// Блок зі спойлерами
+.spollers {
+	display: grid;
+	gap: 15px;
+	max-width: 760px;
+	margin: 0 auto;
+}
+// Спойлер
+.spollers__item {
+	border: 1px solid #8954e1;
+	border-radius: 50px;
+	transition: filter 0.3s ease 0s;
+	padding: 30px;
+	@media (max-width: $mobileSmall) {
+		padding: 15px;
+		min-height: 100px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			filter: drop-shadow(4px 4px 20px rgba(137, 84, 225, 0.2));
+		}
+	}
+}
+// Заголовок спойлера
+.spollers__title {
+	width: 100%;
+	cursor: default;
+	text-align: left;
+	display: flex;
+	column-gap: 40px;
+	font-size: 18px;
+	@media (max-width: $mobile) {
+		column-gap: 20px;
+	}
+	@media (max-width: $mobileSmall) {
+		align-items: center;
+		font-size: 14px;
+		column-gap: 15px;
+	}
+	._spoller-init & {
+		cursor: pointer;
+		&::before {
+			content: "";
+			background-color: #000;
+			height: 20px;
+			flex: 0 0 20px;
+			background: url("@img/FAQ/plus.svg") center / contain no-repeat;
+			transition: transform 0.5s ease 0s;
+			display: block;
+		}
+		@media (max-width: $mobileSmall) {
+			&::before {
+				flex: 0 0 15px;
+				height: 15px;
+			}
+		}
+		&._spoller-active {
+			&::before {
+				transform: rotate(-45deg);
+			}
+		}
+		/*
+		._spoller-init & {
+			position: relative;
+			width: 100%;
+			text-align: left;
+			&::before,
+			&::after {
+				content: "";
+				position: absolute;
+				right: 0;
+				top: rem(12);
+				height: rem(1);
+				transition: all 0.3s ease 0s;
+				width: rem(10);
+				background-color: #000;
+			}
+			&::before {
+				transform: rotate(40deg);
+				right: rem(7);
+			}
+			&::after {
+				transform: rotate(-40deg);
+			}
+		}
+		&._spoller-active {
+			&::before {
+				transform: rotate(-40deg);
+			}
+			&::after {
+				transform: rotate(40deg);
+			}
+		}
+		*/
+	}
+}
+// Контент спойлера
+.spollers__body {
+	padding: 15px 0px 0px 60px;
+	line-height: 135%;
+	@media (max-width: $mobile) {
+		padding: 15px 0px 0px 40px;
+	}
+	@media (max-width: $mobileSmall) {
+		font-size: 12px;
+		padding: 15px 0px 0px 30px;
+	}
+	p {
+		&:not(:last-child) {
+			margin-bottom: 15px;
+		}
+	}
+	span {
+		display: block;
+		position: relative;
+		&:not(:last-child) {
+			margin-bottom: 5px;
+		}
+		&::before {
+			content: "";
+			background: url("@img/FAQ/tringle.svg") center / contain no-repeat;
+			width: 15px;
+			height: 15px;
+			display: inline-block;
+			position: absolute;
+			left: -30px;
+			transform: rotate(-150deg) translateY(-22%);
+		}
+	}
+}

@@ -1,0 +1,239 @@
+//====================================================================================================
+.header {
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+	transition: all 0.3s ease 0s;
+	background-color: transparent;
+	&._header-scroll {
+		background-color: rgba($color: #fff, $alpha: 0.9);
+	}
+	// .header__container
+	&__container {
+	}
+	// .header__body
+	&__body {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		min-height: 80px;
+		column-gap: 30px;
+		@media (max-width: $mobile) {
+			min-height: 60px;
+		}
+	}
+	// .header__menu
+	&__menu {
+	}
+	// .header__actions
+	&__actions {
+	}
+}
+.menu {
+	// .menu__icon
+	&__icon {
+	}
+	// .menu__body
+	&__body {
+		@media (max-width: em(1000)) {
+			position: fixed;
+			top: 0;
+			left: -110%;
+			width: 70%;
+			height: 100%;
+			background: rgba(63, 25, 100, 0.95);
+			overflow: auto;
+			transition: left 0.3s ease 0s;
+			z-index: 2;
+			.menu-open & {
+				left: 0;
+				&::before {
+					left: 0;
+				}
+			}
+			&::before {
+				content: "";
+				transition: left 0.3s ease 0s;
+				position: fixed;
+				top: 0;
+				left: -110%;
+				width: 70%;
+				min-height: 80px;
+				background: rgb(63, 25, 100);
+				z-index: 3;
+			}
+		}
+		@media (max-width: $mobile) {
+			&::before {
+				min-height: 60px;
+			}
+		}
+		@media (max-width: $mobileSmall) {
+			width: 100%;
+			&::before {
+				width: 100%;
+			}
+		}
+	}
+	// .menu__list
+	&__list {
+		@media (min-width: em(1000.98)) {
+			display: flex;
+			align-items: center;
+			column-gap: 40px;
+			row-gap: 15px;
+			flex-wrap: wrap;
+		}
+		@media (max-width: $pc) {
+			column-gap: 20px;
+		}
+		@media (max-width: em(1000)) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 90px 25px 30px;
+		}
+	}
+	// .menu__item
+	li {
+		&.menu__item_hidden {
+			display: none;
+		}
+		@media (max-width: em(1000)) {
+			&.menu__item_hidden {
+				display: block;
+			}
+			&._active {
+				border-bottom: 1px solid #fff;
+				display: inline-block;
+			}
+			&:not(:last-child) {
+				margin-bottom: 20px;
+			}
+		}
+	}
+	// .menu__link
+	&__link {
+		transition: all 0.3s ease 0s;
+		@media (min-width: $tablet) {
+			&._active {
+				color: #8954e1;
+			}
+		}
+		@media (max-width: em(1000)) {
+			color: #fff;
+			font-size: 20px;
+			display: inline-block;
+			line-height: 120%;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: #8954e1;
+				text-shadow: 0 0 0.65px #8954e1, 0 0 1px #8954e1;
+			}
+		}
+	}
+}
+.actions-headear {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 30px;
+	li {
+	}
+	// .actions-headear__column
+	&__column {
+		color: #8954e1;
+		@media (any-hover: hover) {
+			&:hover {
+				text-shadow: 0 0 0.65px #8954e1, 0 0 1px #8954e1;
+			}
+		}
+		// .actions-headear__column_border
+		&_border {
+			padding: 8px 20px;
+			margin-right: 40px;
+			min-width: 125px;
+			min-height: 35px;
+			border: 1px solid #8954e1;
+			border-radius: 100px;
+			@media (max-width: em(1000)) {
+				margin-right: 0px;
+			}
+			@media (any-hover: hover) {
+				&:hover {
+					box-shadow: 0px 0px 10px #8954e1;
+				}
+			}
+		}
+		&_contact {
+			@media (max-width: $mobileSmall) {
+				color: #fff;
+				font-size: 20px;
+				display: inline-block;
+				line-height: 120%;
+			}
+		}
+		&_consultation {
+			@media (max-width: $mobile) {
+				color: #fff;
+				font-size: 20px;
+				display: inline-block;
+				line-height: 120%;
+			}
+		}
+	}
+}
+
+//====================================================================================================
+
+.icon-menu {
+	display: none;
+	@media (max-width: em(1000)) {
+		display: block;
+		position: relative;
+		width: rem(30);
+		height: rem(18);
+		z-index: 5;
+		@media (any-hover: none) {
+			cursor: default;
+		}
+		span,
+		&::before,
+		&::after {
+			content: "";
+			transition: all 0.3s ease 0s;
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: rem(2);
+			background: linear-gradient(261.68deg, #a35cd4 1.75%, #de6eb5 93.65%);
+		}
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		span {
+			top: calc(50% - rem(1));
+		}
+		.menu-open & {
+			span {
+				width: 0;
+			}
+			&::before,
+			&::after {
+				background: #fff;
+			}
+			&::before {
+				top: calc(50% - rem(1));
+				transform: rotate(-45deg);
+			}
+			&::after {
+				bottom: calc(50% - rem(1));
+				transform: rotate(45deg);
+			}
+		}
+	}
+}
